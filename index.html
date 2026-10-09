@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comfy — Sleep Like You're Floating</title>
+<meta name="description" content="Comfy — ultra-soft, breathable, ergonomic beds designed for the deepest sleep of your life.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23C97B58'/%3E%3Cpath d='M6 20c0-5 4-8 10-8s10 3 10 8' stroke='%23F7F2EA' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='10' cy='12' r='2.5' fill='%23F7F2EA'/%3E%3Ccircle cx='22' cy='12' r='2.5' fill='%23F7F2EA'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600&family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══════════ PRELOADER ══════════ -->
+<div class="preloader" id="preloader">
+  <div class="preloader__inner">
+    <div class="preloader__logo">comfy<span>.</span></div>
+    <div class="preloader__bar"><span id="preloader-fill"></span></div>
+    <div class="preloader__count"><span id="preloader-count">0</span>%</div>
+  </div>
+</div>
+
+<!-- ══════════ CURSOR / PROGRESS / GRAIN ══════════ -->
+<div class="cursor" id="cursor"><span class="cursor__label" id="cursor-label"></span></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="progress-bar"><span id="progress"></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ══════════ NAV ══════════ -->
+<header class="nav" id="nav">
+  <a href="#top" class="nav__logo" data-cursor="hover">comfy<span>.</span></a>
+  <nav class="nav__links">
+    <a href="#featured" data-i18n="nav.story" data-cursor="hover">The Comfy Story</a>
+    <a href="#why" data-i18n="nav.why" data-cursor="hover">Why Comfy</a>
+    <a href="#collection" data-i18n="nav.collection" data-cursor="hover">Collection</a>
+    <a href="#faq" data-i18n="nav.faq" data-cursor="hover">FAQ</a>
+  </nav>
+  <div class="nav__actions">
+    <button class="lang-toggle" id="lang-toggle" data-cursor="hover" aria-label="Switch language">
+      <span class="lang-toggle__active" id="lang-active">ع</span>
+      <span class="lang-toggle__sep">/</span>
+      <span id="lang-other">EN</span>
+    </button>
+    <a href="#cta" class="btn btn--small magnetic" data-i18n="nav.cta" data-cursor="hover">Sleep Better Tonight</a>
+  </div>
+  <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+</header>
+
+<div class="menu-overlay" id="menu-overlay">
+  <nav>
+    <a href="#featured" data-i18n="nav.story">The Comfy Story</a>
+    <a href="#why" data-i18n="nav.why">Why Comfy</a>
+    <a href="#collection" data-i18n="nav.collection">Collection</a>
+    <a href="#faq" data-i18n="nav.faq">FAQ</a>
+    <a href="#cta" data-i18n="nav.cta">Sleep Better Tonight</a>
+  </nav>
+</div>
+
+<main id="top">
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <canvas id="bed-canvas" aria-hidden="true"></canvas>
+  <div class="hero__glow" aria-hidden="true"></div>
+
+  <div class="hero__content">
+    <p class="hero__eyebrow reveal-line"><span data-i18n="hero.eyebrow">Handcrafted beds · Since 2016</span></p>
+    <h1 class="hero__title" id="hero-title">
+      <span class="line"><em data-i18n="hero.title1">Sleep</em></span>
+      <span class="line"><span data-i18n="hero.title2">like you're</span></span>
+      <span class="line"><strong data-i18n="hero.title3">floating.</strong></span>
+    </h1>
+    <p class="hero__sub" data-i18n="hero.sub">Cloud-soft mattresses wrapped in breathable silk-touch cotton. Engineered with orthopedic support, obsessed with comfort. Your best sleep starts here.</p>
+    <div class="hero__ctas">
+      <a href="#collection" class="btn btn--primary magnetic" data-cursor="hover" data-i18n="hero.cta1">Explore the Collection</a>
+      <a href="#featured" class="btn btn--ghost magnetic" data-cursor="hover" data-i18n="hero.cta2">Our Story →</a>
+    </div>
+  </div>
+
+  <div class="hero__badge hero__badge--a" data-speed="0.6">
+    <strong>4.9</strong><span data-i18n="hero.badge1">★ 2,400+ sleepers</span>
+  </div>
+  <div class="hero__badge hero__badge--b" data-speed="0.35">
+    <strong data-i18n="hero.badge2num">100</strong><span data-i18n="hero.badge2">nights trial</span>
+  </div>
+  <div class="hero__badge hero__badge--c" data-speed="0.5">
+    <strong data-i18n="hero.badge3">Free</strong><span data-i18n="hero.badge3b">white-glove delivery</span>
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true">
+    <span data-i18n="hero.scroll">Scroll to dream</span>
+    <i></i>
+  </div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track" id="marquee-track">
+    <span>Ultra-Soft ✦ Breathable ✦ Ergonomic ✦ Hypoallergenic ✦ Handcrafted ✦ Cloud-Like ✦&nbsp;</span>
+    <span>Ultra-Soft ✦ Breathable ✦ Ergonomic ✦ Hypoallergenic ✦ Handcrafted ✦ Cloud-Like ✦&nbsp;</span>
+  </div>
+</div>
+
+<!-- ══════════ FEATURED / STORY ══════════ -->
+<section class="featured" id="featured">
+  <div class="featured__media">
+    <div class="featured__img-wrap" data-cursor="view">
+      <img src="assets/featured.jpg" alt="Comfy bed in a sunlit bedroom" class="parallax-img">
+    </div>
+    <div class="featured__float" data-speed="0.25">
+      <span data-i18n="featured.float">6 layers of pure coziness</span>
+    </div>
+  </div>
+  <div class="featured__text">
+    <p class="section-eyebrow" data-i18n="featured.eyebrow">The Comfy Story</p>
+    <h2 class="section-title" data-i18n="featured.title">We didn't just make a bed. We engineered a feeling.</h2>
+    <p class="section-body" data-i18n="featured.body1">Every Comfy bed is built in small batches by craftspeople who treat sleep as an art form. Six precision layers — from a gel-infused cooling core to a silk-touch bamboo cover — work together so your body sinks in and your mind lets go.</p>
+    <p class="section-body" data-i18n="featured.body2">No springs poking you. No night sweats. No 3 a.m. tossing. Just soft, smooth, uninterrupted sleep — the kind you forgot you were capable of.</p>
+    <div class="stats">
+      <div class="stat"><strong class="counter" data-target="98">0</strong><span data-i18n="featured.stat1">% sleep better</span></div>
+      <div class="stat"><strong class="counter" data-target="2400" data-suffix="+">0</strong><span data-i18n="featured.stat2">happy sleepers</span></div>
+      <div class="stat"><strong class="counter" data-target="15">0</strong><span data-i18n="featured.stat3">min to fall asleep</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ WHY ══════════ -->
+<section class="why" id="why">
+  <div class="why__head">
+    <p class="section-eyebrow" data-i18n="why.eyebrow">Why Comfy</p>
+    <h2 class="section-title" data-i18n="why.title">Softness you can feel. Science you can trust.</h2>
+  </div>
+  <div class="why__grid">
+    <article class="why__card tilt" data-cursor="hover">
+      <div class="why__icon">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M24 42S8 31 8 19a8 8 0 0 1 16-3 8 8 0 0 1 16 3c0 12-16 23-16 23Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 data-i18n="why.card1.title">Silk-Touch Softness</h3>
+      <p data-i18n="why.card1.body">A bamboo-cotton weave so smooth it feels like sleeping on a cloud. Gentle on skin, kind to allergies.</p>
+    </article>
+    <article class="why__card tilt" data-cursor="hover">
+      <div class="why__icon">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M24 6v8m0 20v8M6 24h8m20 0h8M11 11l6 6m14 14 6 6m0-26-6 6M17 31l-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3 data-i18n="why.card2.title">Cool All Night</h3>
+      <p data-i18n="why.card2.body">Gel-infused memory foam channels heat away from your body, so you stay at the perfect temperature until sunrise.</p>
+    </article>
+    <article class="why__card tilt" data-cursor="hover">
+      <div class="why__icon">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M6 30c6-6 12-6 18 0s12 6 18 0M6 18c6-6 12-6 18 0s12 6 18 0" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3 data-i18n="why.card3.title">Orthopedic Support</h3>
+      <p data-i18n="why.card3.body">Zoned support aligns your spine while the plush top layer cradles every curve. Wake up without the aches.</p>
+    </article>
+    <article class="why__card tilt" data-cursor="hover">
+      <div class="why__icon">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M24 4l5.5 11.5L41 17l-8.5 8 2 12-10.5-5.5L13.5 37l2-12L7 17l11.5-1.5L24 4Z" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></svg>
+      </div>
+      <h3 data-i18n="why.card4.title">100-Night Trial</h3>
+      <p data-i18n="why.card4.body">Sleep on it for a hundred nights. If it isn't the best bed you've ever owned, we'll pick it up — free.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ COLLECTION ══════════ -->
+<section class="collection" id="collection">
+  <div class="collection__head">
+    <div>
+      <p class="section-eyebrow" data-i18n="collection.eyebrow">The Collection</p>
+      <h2 class="section-title" data-i18n="collection.title">Pick your cloud.</h2>
+    </div>
+    <p class="collection__note" data-i18n="collection.note">Every bed ships free, arrives fully assembled, and comes wrapped in organic cotton.</p>
+  </div>
+  <div class="collection__grid">
+    <article class="product tilt" data-cursor="view">
+      <div class="product__media"><img src="assets/bed-1.jpg" alt="The Cloud Nine bed" class="parallax-img"></div>
+      <div class="product__info">
+        <div class="product__row"><h3 data-i18n="collection.p1.name">Cloud Nine</h3><span class="product__price" data-i18n="collection.p1.price">$1,290</span></div>
+        <p data-i18n="collection.p1.desc">Our signature plush-topper. Medium-firm feel, maximum hug.</p>
+        <span class="product__tag" data-i18n="collection.p1.tag">Bestseller</span>
+      </div>
+    </article>
+    <article class="product tilt" data-cursor="view">
+      <div class="product__media"><img src="assets/bed-2.jpg" alt="The Dream Drift bed" class="parallax-img"></div>
+      <div class="product__info">
+        <div class="product__row"><h3 data-i18n="collection.p2.name">Dream Drift</h3><span class="product__price" data-i18n="collection.p2.price">$1,590</span></div>
+        <p data-i18n="collection.p2.desc">Extra-deep pillow top with cooling gel. Sleeps cool, feels weightless.</p>
+        <span class="product__tag" data-i18n="collection.p2.tag">Cooling</span>
+      </div>
+    </article>
+    <article class="product tilt" data-cursor="view">
+      <div class="product__media"><img src="assets/bed-3.jpg" alt="The Feather Light bed" class="parallax-img"></div>
+      <div class="product__info">
+        <div class="product__row"><h3 data-i18n="collection.p3.name">Feather Light</h3><span class="product__price" data-i18n="collection.p3.price">$1,890</span></div>
+        <p data-i18n="collection.p3.desc">Natural latex core, hand-tufted finish. Firm, airy, eternal.</p>
+        <span class="product__tag" data-i18n="collection.p3.tag">Natural Latex</span>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ LAYERS ══════════ -->
+<section class="layers" id="layers">
+  <div class="layers__media" data-speed="0.15">
+    <img src="assets/detail.jpg" alt="Bedding detail" class="parallax-img">
+    <div class="layers__chips">
+      <span style="--d:0s" data-i18n="layers.chip1">Silk cover</span>
+      <span style="--d:.4s" data-i18n="layers.chip2">Bamboo weave</span>
+      <span style="--d:.8s" data-i18n="layers.chip3">Gel foam</span>
+      <span style="--d:1.2s" data-i18n="layers.chip4">Support core</span>
+      <span style="--d:1.6s" data-i18n="layers.chip5">Breathable base</span>
+    </div>
+  </div>
+  <div class="layers__text">
+    <p class="section-eyebrow" data-i18n="layers.eyebrow">Inside the Comfy</p>
+    <h2 class="section-title" data-i18n="layers.title">Six layers between you and the best sleep of your life.</h2>
+    <ul class="layers__list">
+      <li><span>01</span><b data-i18n="layers.l1.t">Silk-touch cover</b><i data-i18n="layers.l1.d">Removable, washable, impossibly smooth.</i></li>
+      <li><span>02</span><b data-i18n="layers.l2.t">Bamboo comfort weave</b><i data-i18n="layers.l2.d">Wicks moisture, stays cool to the touch.</i></li>
+      <li><span>03</span><b data-i18n="layers.l3.t">Plush pillow top</b><i data-i18n="layers.l3.d">The layer your shoulders dream about.</i></li>
+      <li><span>04</span><b data-i18n="layers.l4.t">Gel-infused foam</b><i data-i18n="layers.l4.d">Pulls heat away, all night long.</i></li>
+      <li><span>05</span><b data-i18n="layers.l5.t">Zoned support core</b><i data-i18n="layers.l5.d">Orthopedic zones for spine alignment.</i></li>
+      <li><span>06</span><b data-i18n="layers.l6.t">Reinforced base</b><i data-i18n="layers.l6.d">Sag-proof for the next twenty years.</i></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════ TESTIMONIALS ══════════ -->
+<section class="testimonials" id="testimonials">
+  <p class="section-eyebrow center" data-i18n="testi.eyebrow">Sleeper Stories</p>
+  <h2 class="section-title center" data-i18n="testi.title">"I didn't know beds could feel like this."</h2>
+  <div class="testimonials__grid">
+    <blockquote class="testi-card tilt" data-cursor="hover">
+      <div class="testi-card__stars">★★★★★</div>
+      <p data-i18n="testi.t1.body">Three weeks in and my back pain is gone. I fall asleep in what feels like minutes. It's like the bed hugs you back.</p>
+      <footer><strong data-i18n="testi.t1.name">Layla M.</strong><span data-i18n="testi.t1.role">Dubai · Cloud Nine</span></footer>
+    </blockquote>
+    <blockquote class="testi-card tilt" data-cursor="hover">
+      <div class="testi-card__stars">★★★★★</div>
+      <p data-i18n="testi.t2.body">I used to wake up hot every single night. The cooling layer is not marketing — it genuinely works. Best purchase of the year.</p>
+      <footer><strong data-i18n="testi.t2.name">Omar K.</strong><span data-i18n="testi.t2.role">Cairo · Dream Drift</span></footer>
+    </blockquote>
+    <blockquote class="testi-card tilt" data-cursor="hover">
+      <div class="testi-card__stars">★★★★★</div>
+      <p data-i18n="testi.t3.body">The delivery team carried it in, set it up, took the packaging. I climbed in that same night and slept eleven hours. Eleven!</p>
+      <footer><strong data-i18n="testi.t3.name">Sara A.</strong><span data-i18n="testi.t3.role">Riyadh · Feather Light</span></footer>
+    </blockquote>
+  </div>
+</section>
+
+<!-- ══════════ LIFESTYLE BAND ══════════ -->
+<section class="band">
+  <div class="band__bg" data-speed="0.3"><img src="assets/ambience.jpg" alt="Comfy bedroom ambience" class="parallax-img"></div>
+  <div class="band__content">
+    <h2 data-i18n="band.title">Tonight could be the best sleep you've had in years.</h2>
+    <a href="#cta" class="btn btn--primary magnetic" data-cursor="hover" data-i18n="band.cta">Claim Your 100 Nights</a>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="faq" id="faq">
+  <div class="faq__head">
+    <p class="section-eyebrow" data-i18n="faq.eyebrow">Questions</p>
+    <h2 class="section-title" data-i18n="faq.title">Everything you're wondering.</h2>
+  </div>
+  <div class="faq__list">
+    <div class="faq-item" data-cursor="hover">
+      <button class="faq-item__q"><span data-i18n="faq.q1">How does the 100-night trial work?</span><i></i></button>
+      <div class="faq-item__a"><p data-i18n="faq.a1">Sleep on your new bed for a hundred nights. If you don't love it, we'll arrange a free pickup and refund you in full — no questions, no restocking fees.</p></div>
+    </div>
+    <div class="faq-item" data-cursor="hover">
+      <button class="faq-item__q"><span data-i18n="faq.q2">Is delivery really free?</span><i></i></button>
+      <div class="faq-item__a"><p data-i18n="faq.a2">Yes. Everywhere we deliver. Our team brings it to your bedroom, assembles it, and takes all the packaging with them.</p></div>
+    </div>
+    <div class="faq-item" data-cursor="hover">
+      <button class="faq-item__q"><span data-i18n="faq.q3">Which firmness should I choose?</span><i></i></button>
+      <div class="faq-item__a"><p data-i18n="faq.a3">Side sleepers love Cloud Nine's plush top. Back sleepers thrive on Feather Light's natural latex. Dream Drift sits in the middle — and cools down hot sleepers.</p></div>
+    </div>
+    <div class="faq-item" data-cursor="hover">
+      <button class="faq-item__q"><span data-i18n="faq.q4">How do I clean it?</span><i></i></button>
+      <div class="faq-item__a"><p data-i18n="faq.a4">The cover unzips and machine-washes cold. The core only needs airing out in the sun a couple of times a year.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="cta" id="cta">
+  <div class="cta__bg" data-speed="0.25"><img src="assets/cta.jpg" alt="Cozy bedroom at dusk" class="parallax-img"></div>
+  <div class="cta__inner">
+    <h2 class="cta__title" data-i18n="cta.title">Your best sleep<br>starts tonight.</h2>
+    <p class="cta__sub" data-i18n="cta.sub">Join 2,400+ sleepers. Free delivery, 100-night trial, zero risk.</p>
+    <form class="cta__form" id="cta-form" novalidate>
+      <input type="email" id="cta-email" data-i18n-ph="cta.placeholder" placeholder="your@email.com" aria-label="Email">
+      <button type="submit" class="btn btn--primary magnetic" data-cursor="hover" data-i18n="cta.button">Start Sleeping Better</button>
+    </form>
+    <p class="cta__msg" id="cta-msg"></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="footer__top">
+    <a href="#top" class="footer__logo">comfy<span>.</span></a>
+    <div class="footer__cols">
+      <div class="footer__col">
+        <h4 data-i18n="footer.shop">Shop</h4>
+        <a href="#collection" data-cursor="hover" data-i18n="collection.p1.name">Cloud Nine</a>
+        <a href="#collection" data-cursor="hover" data-i18n="collection.p2.name">Dream Drift</a>
+        <a href="#collection" data-cursor="hover" data-i18n="collection.p3.name">Feather Light</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.company">Company</h4>
+        <a href="#featured" data-cursor="hover" data-i18n="nav.story">The Comfy Story</a>
+        <a href="#why" data-cursor="hover" data-i18n="nav.why">Why Comfy</a>
+        <a href="#faq" data-cursor="hover" data-i18n="nav.faq">FAQ</a>
+      </div>
+      <div class="footer__col">
+        <h4 data-i18n="footer.support">Support</h4>
+        <a href="#cta" data-cursor="hover" data-i18n="footer.contact">Contact us</a>
+        <a href="#faq" data-cursor="hover" data-i18n="faq.eyebrow">Questions</a>
+        <a href="#cta" data-cursor="hover" data-i18n="footer.trial">100-night trial</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer__bottom">
+    <span data-i18n="footer.rights">© 2026 Comfy Sleep Co. Sleep well.</span>
+    <span class="footer__made" data-i18n="footer.made">Made for dreamers ✦</span>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="js/scene.js" type="module"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
